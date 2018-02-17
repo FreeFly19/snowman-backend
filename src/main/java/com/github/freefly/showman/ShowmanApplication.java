@@ -7,9 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,8 +46,14 @@ class FriendController {
 	private List<Friend> getFriends() {
 		return friendRepo.findAll();
 	}
+
+	@PostMapping
+	private void createFriend(@RequestBody Friend friend) {
+		friendRepo.save(friend);
+	}
 }
 
+@Repository
 interface FriendRepo extends JpaRepository<Friend, Long> {
 }
 
