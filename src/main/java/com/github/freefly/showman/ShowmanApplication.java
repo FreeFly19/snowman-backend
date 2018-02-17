@@ -48,8 +48,8 @@ class FriendController {
 	}
 
 	@PostMapping
-	private void createFriend(@RequestBody Friend friend) {
-		friendRepo.save(friend);
+	private Friend createFriend(@RequestBody Friend friend) {
+		return friendRepo.save(friend);
 	}
 }
 
